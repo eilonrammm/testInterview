@@ -1,0 +1,85 @@
+﻿<html>
+<head>
+    <title>It is an app</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/ui-bootstrap-tpls-1.1.2.min.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="~/Scripts/loadingoverlay.min.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/angular-chart.min.js"></script>
+    <link href="~/css/angular-chart.min.css" rel="stylesheet" />
+    <script src="~/SPA/ApiService.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Style/HomeDesign.css">
+    <script src="~/SPA/Controller/MainController.js"></script>
+    <script src="~/SPA/App.js"></script>
+</head>
+<body>
+    <div class="aaaa" ng-app="App" ng-controller="MainController">
+
+        <div class="wrapper">
+            <div class="sidebar">
+                <div class='seperator'></div>
+                <ul class="menu center">
+                    <il class="web-title">MY CINEMA</il>
+                </ul>
+
+                <div class='seperator'>
+                    <div class='title'>Order</div>
+                </div>
+                <ul class="menu-2">
+                    <li><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name</a></li>
+                    <li><a href="" ng-click="reverse=!reverse;order('views', reverse)">Views</a></li>
+                    <li><a href="" ng-click="reverse=!reverse;order('seasons', reverse)">Seasons</a></li>
+                </ul>
+
+                <div class='seperator'>
+                    <ul class='title'>Search</ul>
+                </div>
+                <input class="text-style" ng-model="searchText" type="text">
+            </div>
+            <!-- MAIN -->
+
+            <div class="main">
+                <div class="content">
+
+
+                    <div class="gallery">
+                        <ui ng-repeat="item in filtered = (models.items | filter:searchText)">
+                            <button type="button" ng-click="showDetails(item)" class="btn btn-primary item" data-toggle="modal" data-target="#exampleModalLong" style=" background-image: url({{item.image}})">
+
+                                <div class="description">
+                                    <h2>{{item.title}}</h2>
+                                    <p>Views: {{item.views}}</p>
+                                    <p>Number of seasons: {{item.seasons}}</p>
+                                </div>
+                            </button>
+                            <!-- Modal jjjjjjj -->
+                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <img src="{{choosenItem.image}}">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">{{choosenItem.title}}</h5>
+                                            <div>{{choosenItem.description}}</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">לחץ כאן לצפייה</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ui>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
